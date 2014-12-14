@@ -271,7 +271,7 @@ namespace FluentAssertions.Equivalency
         /// <summary>
         /// Adds a matching rule to the ones already added by default, and which is evaluated before all existing rules.
         /// </summary>
-        // This method is internal because we do not want it used externally yet.
+        // NOTE This method is internal because we do not want it used externally yet.
         // It is used reflectively by ShouldAllBeEquivalentToHelper.
         internal TSelf Using(IEquivalencyStep equivalencyStep)
         {
