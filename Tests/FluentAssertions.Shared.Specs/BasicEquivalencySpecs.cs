@@ -929,6 +929,26 @@ With configuration:*");
             act.ShouldNotThrow();
         }
 
+        [TestMethod]
+        public void When_expecting_a_specific_property_it_should_fail_if_it_is_missing()
+        {
+            //-----------------------------------------------------------------------------------------------------------
+            // Arrange
+            //-----------------------------------------------------------------------------------------------------------
+            var expected = new {Foo = "whatever", Bar = "test"};
+            var result = new {Foo = "whatever"};
+
+            //-----------------------------------------------------------------------------------------------------------
+            // Act
+            //-----------------------------------------------------------------------------------------------------------
+            Action act = () => result.ShouldBeEquivalentTo(expected, options => options.IncludingAllRuntimeProperties());
+
+            //-----------------------------------------------------------------------------------------------------------
+            // Assert
+            //-----------------------------------------------------------------------------------------------------------
+             act.ShouldThrow<AssertFailedException>().WithMessage("Expected member Bar*");
+        }
+
         public class BaseWithFoo
         {
             public object Foo { get; set; }
